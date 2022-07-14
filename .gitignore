@@ -1,2 +1,10 @@
 *.class
 *.log
+
+# SBT specific files
+.bsp
+target
+
+# IDE specific files
+.idea
+*.iml
