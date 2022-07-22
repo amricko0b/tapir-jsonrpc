@@ -1,5 +1,6 @@
 package sttp.tapir.jsonrpc
 
+import sttp.tapir.jsonrpc.server.ServerJsonRpcMethod
 import sttp.tapir.typelevel.ParamConcat
 
 /** A description for JSON-RPC method.
@@ -34,4 +35,6 @@ final case class JsonRpcMethod[I, O](name: String, params: JsonRpcParams[I], res
     */
   def in[J, IJ](param: JsonRpcParams[J])(implicit concat: ParamConcat.Aux[I, J, IJ]): JsonRpcMethod[IJ, O] =
     this.copy(params = params / param)
+
+  def serverLogic[F[_]](f: I => F[O]): ServerJsonRpcMethod[F] = ServerJsonRpcMethod(this, f)
 }

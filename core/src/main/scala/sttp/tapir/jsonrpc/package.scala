@@ -2,6 +2,8 @@ package sttp.tapir
 
 package object jsonrpc {
 
+  //endpoint.serverLogic()
+
   /** Describe a JSON-RPC method with no result - so called notification. Description comes without params, one should describe params
     * later.
     *
